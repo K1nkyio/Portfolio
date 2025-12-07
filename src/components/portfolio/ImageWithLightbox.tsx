@@ -25,12 +25,6 @@ export function ImageWithLightbox({
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
-  const aspectRatioClasses = {
-    portrait: 'aspect-[3/4]',
-    landscape: 'aspect-[3/2]',
-    square: 'aspect-square'
-  };
-
   return (
     <motion.div
       className={cn('relative overflow-hidden rounded-sm cursor-pointer group', className)}
@@ -42,7 +36,7 @@ export function ImageWithLightbox({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={cn('relative bg-muted', aspectRatioClasses[image.aspectRatio])}>
+      <div className="relative bg-muted aspect-[16/9]">
         {/* Loading placeholder */}
         {!isLoaded && (
           <div className="absolute inset-0 bg-muted" />

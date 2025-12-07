@@ -4,7 +4,6 @@ import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import type { ProjectImage } from '@/types';
-import { cn } from '@/lib/utils';
 
 interface LightboxProps {
   images: ProjectImage[];
@@ -159,21 +158,6 @@ export function Lightbox({
               />
             </AnimatePresence>
           </div>
-
-          {/* Caption */}
-          {currentImage.caption && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-50 max-w-2xl px-6">
-              <motion.p
-                key={currentImage.id}
-                className="text-white/80 text-sm md:text-base font-light text-center tracking-wide"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 }}
-              >
-                {currentImage.caption}
-              </motion.p>
-            </div>
-          )}
         </div>
       </DialogContent>
     </Dialog>
