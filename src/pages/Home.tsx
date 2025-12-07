@@ -5,6 +5,7 @@ import { ProjectCard } from '@/components/portfolio/ProjectCard';
 import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { GallerySection } from '@/components/gallery/GallerySection';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -163,6 +164,9 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </section>
+
+        {/* Gallery Section */}
+        <GallerySection />
       </div>
     </>
   );
