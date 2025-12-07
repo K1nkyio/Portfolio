@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Camera, User } from 'lucide-react';
+import { Calendar, Code, ExternalLink, Github } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { getProjectBySlug } from '@/data/projects';
 import { ImageWithLightbox } from '@/components/portfolio/ImageWithLightbox';
 import { Lightbox } from '@/components/portfolio/Lightbox';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 
 /**
  * Project detail page with hero image, gallery, and full-screen lightbox
@@ -45,89 +47,111 @@ export default function ProjectDetail() {
       
       <div className="min-h-screen">
         {/* Hero Image - 70vh */}
-      <motion.div
-        className="relative w-full h-[70vh] overflow-hidden bg-muted"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <img
-          src={project.coverImage}
-          alt={project.title}
-          className="w-full h-full object-cover"
-          loading="eager"
-          fetchPriority="high"
-        />
-        {/* Gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
-      </motion.div>
-
-      {/* Project Info Section */}
-      <section className="max-w-4xl mx-auto px-6 lg:px-8 py-12 md:py-16">
         <motion.div
-          className="space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full h-[70vh] overflow-hidden bg-muted"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          {/* Title and Category */}
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide">
-              {project.title}
-            </h1>
-            <div className="flex flex-wrap gap-6 text-sm text-muted-foreground font-light">
-              <div className="flex items-center gap-2">
-                <Calendar className="size-4" />
-                <span>{project.year}</span>
+          <img
+            src={project.coverImage}
+            alt={project.title}
+            className="w-full h-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+          />
+          {/* Gradient overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+        </motion.div>
+
+        {/* Project Info Section */}
+        <section className="max-w-4xl mx-auto px-6 lg:px-8 py-12 md:py-16">
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            {/* Title and Category */}
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide">
+                {project.title}
+              </h1>
+              <div className="flex flex-wrap gap-6 text-sm text-muted-foreground font-light">
+                <div className="flex items-center gap-2">
+                  <Calendar className="size-4" />
+                  <span>{project.year}</span>
+                </div>
+                <div className="flex items-center gap-2 capitalize">
+                  <Code className="size-4" />
+                  <span>{project.category}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2 capitalize">
-                <span>•</span>
-                <span>{project.category}</span>
+            </div>
+
+            <Separator />
+
+            {/* Description */}
+            <div className="space-y-4">
+              <p className="text-lg md:text-xl font-light leading-relaxed text-foreground">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Highlights */}
+            {project.highlights && project.highlights.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-light tracking-wide text-muted-foreground uppercase">
+                  Key Features
+                </h3>
+                <ul className="space-y-2">
+                  {project.highlights.map((highlight, index) => (
+                    <li key={index} className="flex items-start gap-3 text-foreground font-light">
+                      <span className="text-primary mt-1">•</span>
+                      {highlight}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              {project.location && (
-                <>
-                  <span>•</span>
-                  <div className="flex items-center gap-2">
-                    <MapPin className="size-4" />
-                    <span>{project.location}</span>
-                  </div>
-                </>
+            )}
+
+            {/* Tech Stack */}
+            {project.techStack && project.techStack.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-light tracking-wide text-muted-foreground uppercase">
+                  Tech Stack
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech, index) => (
+                    <Badge key={index} variant="secondary" className="font-light">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-4">
+              {project.liveUrl && (
+                <Button variant="default" asChild>
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="size-4 mr-2" />
+                    View Live
+                  </a>
+                </Button>
+              )}
+              {project.githubUrl && (
+                <Button variant="outline" asChild>
+                  <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <Github className="size-4 mr-2" />
+                    View Source
+                  </a>
+                </Button>
               )}
             </div>
-          </div>
-
-          <Separator />
-
-          {/* Description */}
-          <div className="space-y-4">
-            <p className="text-lg md:text-xl font-light leading-relaxed text-foreground">
-              {project.description}
-            </p>
-          </div>
-
-          {/* Technical Details */}
-          <div className="grid md:grid-cols-2 gap-6 pt-4">
-            {project.camera && (
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
-                  <Camera className="size-4" />
-                  <span>Camera</span>
-                </div>
-                <p className="font-light text-foreground">{project.camera}</p>
-              </div>
-            )}
-            {project.client && (
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-sm font-light tracking-wide uppercase text-muted-foreground">
-                  <User className="size-4" />
-                  <span>Client</span>
-                </div>
-                <p className="font-light text-foreground">{project.client}</p>
-              </div>
-            )}
-          </div>
-        </motion.div>
-      </section>
+          </motion.div>
+        </section>
 
         {/* Image Gallery - Edge to edge */}
         <section className="py-12 md:py-16">

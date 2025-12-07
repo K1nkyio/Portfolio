@@ -1,18 +1,22 @@
 /**
- * Core TypeScript interfaces for Frame Portfolio
- * Based on SPECIFICATION.md data model requirements
+ * Core TypeScript interfaces for Developer Portfolio
  */
 
-export type ProjectCategory = 'portraits' | 'landscapes' | 'editorial' | 'architecture' | 'documentary';
+export type ProjectCategory = 'mobile' | 'web' | 'ai' | 'fullstack' | 'platform';
 
-export type AspectRatio = 'portrait' | 'landscape' | 'square';
+export interface TechStack {
+  name: string;
+  icon?: string;
+}
 
 export interface ProjectImage {
   id: string;
   src: string;
   alt: string;
-  aspectRatio: AspectRatio;
-  caption?: string;
+}
+
+export interface ProjectHighlight {
+  text: string;
 }
 
 export interface Project {
@@ -23,29 +27,31 @@ export interface Project {
   coverImage: string;
   images: ProjectImage[];
   description: string;
-  client?: string;
-  camera?: string;
-  location?: string;
+  highlights: string[];
+  techStack: string[];
   slug: string;
+  liveUrl?: string;
+  githubUrl?: string;
 }
 
-export interface PhotographerInfo {
+export interface DeveloperInfo {
   name: string;
   tagline: string;
   heroIntroduction: string;
-  biography: string;
-  approach: string;
-  awards: string[];
-  clients: string[];
-  education: string;
+  aboutWork: string;
+  journey: string;
+  howIWork: string;
+  whatDrivesMe: string;
+  beyondCode: string;
+  futureGoals: string;
+  skills: string[];
   location: string;
   email: string;
-  phone: string;
   availability: string;
   socialLinks: {
-    instagram?: string;
+    github?: string;
     linkedin?: string;
-    behance?: string;
+    twitter?: string;
   };
   portraitImage: string;
 }
@@ -53,7 +59,7 @@ export interface PhotographerInfo {
 export interface ContactSubmission {
   name: string;
   email: string;
-  projectType: 'editorial' | 'commercial' | 'personal';
+  projectType: 'web' | 'mobile' | 'ai' | 'consulting';
   message: string;
   timestamp: Date;
 }
