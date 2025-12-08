@@ -23,15 +23,22 @@ export default function Home() {
       <div className="min-h-screen">
         {/* Hero Section - Full viewport with gradient background */}
         <section className="relative h-screen w-full overflow-hidden">
-          {/* Background with gradient */}
+          {/* Video Background */}
           <div className="absolute inset-0">
-            <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-              {/* Animated gradient orbs */}
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
-            </div>
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source
+                src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
+                type="video/mp4"
+              />
+            </video>
             {/* Gradient Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
           </div>
 
           {/* Hero Content */}
