@@ -23,14 +23,8 @@ export default function Home() {
       <div className="min-h-screen">
         {/* Hero Section - Full viewport with gradient background */}
         <section className="relative h-screen w-full overflow-hidden">
-          {/* Video Background with Fallback */}
+          {/* Video Background */}
           <div className="absolute inset-0">
-            {/* Fallback image shown while video loads or if it fails */}
-            <img
-              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80"
-              alt="Developer workspace"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
             <video
               autoPlay
               muted
