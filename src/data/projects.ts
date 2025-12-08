@@ -16,6 +16,8 @@ export const projects: Project[] = [
       'Responsive, student-friendly UI'
     ],
     techStack: ['Kotlin', 'Firebase', 'Android SDK', 'Material Design'],
+    liveUrl: 'https://play.google.com/store',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '1-1',
@@ -44,6 +46,8 @@ export const projects: Project[] = [
       'Real-time room availability'
     ],
     techStack: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Socket.io'],
+    liveUrl: 'https://hotelease-demo.vercel.app',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '2-1',
@@ -72,6 +76,8 @@ export const projects: Project[] = [
       'Keyword optimization suggestions'
     ],
     techStack: ['Python', 'spaCy', 'scikit-learn', 'FastAPI', 'Docker'],
+    liveUrl: 'https://resume-analyzer-demo.vercel.app',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '3-1',
@@ -100,6 +106,8 @@ export const projects: Project[] = [
       'Personalized learning behavior'
     ],
     techStack: ['Python', 'OpenAI API', 'Flask', 'Speech Recognition', 'Redis'],
+    liveUrl: 'https://ai-assistant-demo.vercel.app',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '4-1',
@@ -128,6 +136,8 @@ export const projects: Project[] = [
       'Clean, mobile-first interface'
     ],
     techStack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
+    liveUrl: 'https://zetechverse.vercel.app',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '5-1',
@@ -156,6 +166,8 @@ export const projects: Project[] = [
       'Simple, efficient admin UI'
     ],
     techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Chart.js'],
+    liveUrl: 'https://hardware-store-demo.vercel.app',
+    githubUrl: 'https://github.com/nicholasmureithi',
     images: [
       {
         id: '6-1',

@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
-import { Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { developerInfo } from '@/data/developer';
 import { ContactForm } from '@/components/forms/ContactForm';
 import { Separator } from '@/components/ui/separator';
 import { SEOHead } from '@/components/seo/SEOHead';
+
+const phoneNumber = '+254742695562';
 
 /**
  * Contact page with form and contact information
@@ -93,6 +95,24 @@ export default function Contact() {
                         className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
                       >
                         {developerInfo.email}
+                      </a>
+                    </div>
+                  </div>
+
+                  {/* Phone */}
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 rounded-sm bg-accent">
+                      <Phone className="size-5 text-muted-foreground" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-sm font-light tracking-wide text-muted-foreground">
+                        Phone
+                      </p>
+                      <a
+                        href={`tel:${phoneNumber}`}
+                        className="text-base md:text-lg font-light hover:text-muted-foreground transition-colors"
+                      >
+                        {phoneNumber}
                       </a>
                     </div>
                   </div>
