@@ -1,4 +1,5 @@
 import type { DeveloperInfo } from '@/types';
+import portraitImage from '@/assets/portrait.jpg';
 
 export const developerInfo: DeveloperInfo = {
   name: 'Nicholas Mureithi',
@@ -36,5 +37,5 @@ Nicholas specializes in modern stacks including React, Node.js, Next.js, Kotlin,
     linkedin: 'https://linkedin.com/in/nicholasmureithi',
     twitter: 'https://twitter.com/nicholasmureithi'
   },
-  portraitImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NjI3Njk1NjB8&ixlib=rb-4.1.0&q=80&w=1080'
+  portraitImage
 };
