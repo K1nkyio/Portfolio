@@ -30,8 +30,7 @@ export default function Home() {
               muted
               loop
               playsInline
-              poster="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1920&q=80"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-full object-cover"
             >
               <source
                 src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4"
@@ -50,22 +49,6 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              {/* Profile Photo */}
-              <motion.div
-                className="relative mx-auto"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.1 }}
-              >
-                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-white/30 shadow-2xl">
-                  <img
-                    src={developerInfo.portraitImage || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"}
-                    alt={developerInfo.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </motion.div>
-
               <motion.h1
                 className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white"
                 initial={{ opacity: 0, y: 20 }}

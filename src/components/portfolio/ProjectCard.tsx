@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
 import type { Project } from '@/types';
 import { cn } from '@/lib/utils';
 
@@ -29,12 +28,6 @@ export function ProjectCard({
     portrait: 'aspect-[3/4]',
     landscape: 'aspect-[3/2]',
     square: 'aspect-square'
-  };
-
-  const handleExternalClick = (e: React.MouseEvent, url: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -68,7 +61,7 @@ export function ProjectCard({
           
           {/* Overlay with gradient and text */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="absolute bottom-0 left-0 right-0 p-6 space-y-3">
+            <div className="absolute bottom-0 left-0 right-0 p-6 space-y-2">
               <h3 className="text-white text-xl md:text-2xl font-light tracking-wide">
                 {project.title}
               </h3>
@@ -79,27 +72,6 @@ export function ProjectCard({
                   <span>{project.year}</span>
                 </div>
               )}
-              {/* Direct project links */}
-              <div className="flex items-center gap-3 pt-1">
-                {project.liveUrl && (
-                  <button
-                    onClick={(e) => handleExternalClick(e, project.liveUrl!)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-light text-white bg-white/20 hover:bg-white/30 rounded-sm backdrop-blur-sm transition-colors"
-                  >
-                    <ExternalLink className="size-3.5" />
-                    <span>Live Demo</span>
-                  </button>
-                )}
-                {project.githubUrl && (
-                  <button
-                    onClick={(e) => handleExternalClick(e, project.githubUrl!)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm font-light text-white bg-white/20 hover:bg-white/30 rounded-sm backdrop-blur-sm transition-colors"
-                  >
-                    <Github className="size-3.5" />
-                    <span>Code</span>
-                  </button>
-                )}
-              </div>
             </div>
           </div>
 
