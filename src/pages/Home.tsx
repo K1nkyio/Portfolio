@@ -6,8 +6,9 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { GallerySection } from '@/components/gallery/GallerySection';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 /**
  * Homepage with immersive hero section and featured projects grid
@@ -91,6 +92,24 @@ export default function Home() {
                     {skill}
                   </span>
                 ))}
+              </motion.div>
+
+              {/* Download CV Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1 }}
+              >
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mt-6 bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white backdrop-blur-sm"
+                >
+                  <a href="/resume.pdf" download="Nicholas_Mureithi_Resume.pdf">
+                    <Download className="mr-2 size-4" />
+                    Download Resume
+                  </a>
+                </Button>
               </motion.div>
             </motion.div>
 
