@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter } from 'lucide-react';
+import { Github, Linkedin, Instagram } from 'lucide-react';
 import { developerInfo } from '@/data/developer';
 import { DownloadResumeButton } from '@/components/ui/DownloadResumeButton';
 
@@ -50,15 +50,15 @@ export function Footer() {
                   <Linkedin className="size-5" />
                 </a>
               )}
-              {developerInfo.socialLinks.twitter && (
+              {developerInfo.socialLinks.instagram && (
                 <a
-                  href={developerInfo.socialLinks.twitter}
+                  href={developerInfo.socialLinks.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Twitter"
+                  aria-label="Instagram"
                 >
-                  <Twitter className="size-5" />
+                  <Instagram className="size-5" />
                 </a>
               )}
             </div>
