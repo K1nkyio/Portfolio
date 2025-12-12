@@ -35,6 +35,11 @@ All colors MUST be HSL.
   --sidebar-border: hsl(220 13% 91%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
+  /* Brand Accent Colors */
+  --brand-accent: hsl(262 83% 58%);
+  --brand-accent-foreground: hsl(0 0% 100%);
+  --brand-accent-hover: hsl(262 83% 52%);
+
   /* Shugar Design System Variables */
   --context-card-border: hsla(0, 0%, 92%, 1);
   --ds-red-800: oklch(58.19% 0.2482 25.15);
@@ -85,6 +90,11 @@ All colors MUST be HSL.
   --sidebar-border: hsl(240 3.7% 15.9%);
   --sidebar-ring: hsl(217.2 91.2% 59.8%);
 
+  /* Brand Accent Colors - Dark Mode */
+  --brand-accent: hsl(262 83% 65%);
+  --brand-accent-foreground: hsl(0 0% 100%);
+  --brand-accent-hover: hsl(262 83% 70%);
+
   /* Shugar Design System Variables - Dark Mode */
   --context-card-border: hsla(0, 0%, 18%, 1);
   --ds-red-800: oklch(58.01% 0.227 25.12);
@@ -131,6 +141,11 @@ All colors MUST be HSL.
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Brand Accent Colors */
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-foreground: var(--brand-accent-foreground);
+  --color-brand-accent-hover: var(--brand-accent-hover);
 
   /* Shugar Design System Colors */
   --color-context-card-border: var(--context-card-border);
