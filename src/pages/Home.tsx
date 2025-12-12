@@ -7,6 +7,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { GallerySection } from '@/components/gallery/GallerySection';
 import { DownloadResumeButton } from '@/components/ui/DownloadResumeButton';
+import { TypewriterText } from '@/components/ui/TypewriterText';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import portraitImage from '@/assets/portrait.jpg';
@@ -82,11 +83,11 @@ export default function Home() {
                 
                 <motion.p
                   className="text-xl md:text-2xl font-light tracking-wide text-white/90"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.4 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
                 >
-                  {developerInfo.tagline}
+                  <TypewriterText text={developerInfo.tagline} delay={0.8} />
                 </motion.p>
 
                 <motion.p
