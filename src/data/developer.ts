@@ -30,12 +30,12 @@ Nicholas specializes in modern stacks including React, Node.js, Next.js, Kotlin,
     'MongoDB'
   ],
   location: 'Kenya',
-  email: 'hello@nicholasmureithi.dev',
+  email: 'nicholasmaina826@gmail.com',
   availability: 'Open to new opportunities',
   socialLinks: {
-    github: 'https://github.com/nicholasmureithi',
-    linkedin: 'https://linkedin.com/in/nicholasmureithi',
-    twitter: 'https://twitter.com/nicholasmureithi'
+    github: 'https://github.com/K1nkyio',
+    linkedin: 'https://www.linkedin.com/in/nicholas-mureithi',
+    instagram: 'https://www.instagram.com/nklaus0/'
   },
   portraitImage
 };

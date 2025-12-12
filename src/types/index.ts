@@ -52,6 +52,7 @@ export interface DeveloperInfo {
     github?: string;
     linkedin?: string;
     twitter?: string;
+    instagram?: string;
   };
   portraitImage: string;
 }

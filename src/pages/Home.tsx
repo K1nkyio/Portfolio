@@ -6,6 +6,7 @@ import { ScrollIndicator } from '@/components/ui/ScrollIndicator';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { GallerySection } from '@/components/gallery/GallerySection';
+import { TestimonialsSection } from '@/components/testimonials/TestimonialsSection';
 import { DownloadResumeButton } from '@/components/ui/DownloadResumeButton';
 import { TypewriterText } from '@/components/ui/TypewriterText';
 import { ArrowRight } from 'lucide-react';
@@ -207,6 +208,9 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </section>
+
+        {/* Testimonials Section */}
+        <TestimonialsSection />
 
         {/* Gallery Section */}
         <GallerySection />
