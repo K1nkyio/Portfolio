@@ -9,6 +9,7 @@ import { GallerySection } from '@/components/gallery/GallerySection';
 import { DownloadResumeButton } from '@/components/ui/DownloadResumeButton';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import portraitImage from '@/assets/portrait.jpg';
 
 /**
  * Homepage with immersive hero section and featured projects grid
@@ -45,64 +46,85 @@ export default function Home() {
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6">
             <motion.div
-              className="text-center space-y-6 max-w-4xl"
+              className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-6xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <motion.h1
-                className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-              >
-                {developerInfo.name.toUpperCase()}
-              </motion.h1>
-              
-              <motion.p
-                className="text-xl md:text-2xl font-light tracking-wide text-white/90"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.4 }}
-              >
-                {developerInfo.tagline}
-              </motion.p>
-
-              <motion.p
-                className="text-base md:text-lg font-light leading-relaxed text-white/80 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.6 }}
-              >
-                {developerInfo.heroIntroduction}
-              </motion.p>
-
-              {/* Skills Pills */}
+              {/* Portrait Image */}
               <motion.div
-                className="flex flex-wrap justify-center gap-2 pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.8 }}
+                className="relative flex-shrink-0"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
               >
-                {developerInfo.skills.slice(0, 6).map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-4 py-2 text-sm font-light tracking-wide text-white/90 border border-white/20 rounded-full backdrop-blur-sm"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                <div className="relative size-40 md:size-52 lg:size-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                  <img
+                    src={portraitImage}
+                    alt={developerInfo.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                {/* Decorative ring */}
+                <div className="absolute inset-0 rounded-full border-2 border-brand-accent/50 scale-110 animate-pulse" />
               </motion.div>
 
-              {/* Download CV Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1 }}
-                className="mt-8"
-              >
-                <DownloadResumeButton />
-              </motion.div>
+              {/* Text Content */}
+              <div className="text-center lg:text-left space-y-6 max-w-2xl">
+                <motion.h1
+                  className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-widest text-white"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                >
+                  {developerInfo.name.toUpperCase()}
+                </motion.h1>
+                
+                <motion.p
+                  className="text-xl md:text-2xl font-light tracking-wide text-white/90"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.4 }}
+                >
+                  {developerInfo.tagline}
+                </motion.p>
+
+                <motion.p
+                  className="text-base md:text-lg font-light leading-relaxed text-white/80"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.6 }}
+                >
+                  {developerInfo.heroIntroduction}
+                </motion.p>
+
+                {/* Skills Pills */}
+                <motion.div
+                  className="flex flex-wrap justify-center lg:justify-start gap-2 pt-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                >
+                  {developerInfo.skills.slice(0, 6).map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-2 text-sm font-light tracking-wide text-white/90 border border-white/20 rounded-full backdrop-blur-sm"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </motion.div>
+
+                {/* Download CV Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 1 }}
+                  className="pt-4 flex justify-center lg:justify-start"
+                >
+                  <DownloadResumeButton />
+                </motion.div>
+              </div>
             </motion.div>
 
             {/* Scroll Indicator */}
