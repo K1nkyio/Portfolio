@@ -47,85 +47,64 @@ export default function Home() {
           {/* Hero Content */}
           <div className="relative h-full flex flex-col items-center justify-center px-6">
             <motion.div
-              className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-6xl"
+              className="text-center space-y-6 max-w-4xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              {/* Portrait Image */}
-              <motion.div
-                className="relative flex-shrink-0"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
+              <motion.h1
+                className="text-5xl md:text-7xl lg:text-8xl font-extralight tracking-widest text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
               >
-                <div className="relative size-40 md:size-52 lg:size-64 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
-                  <img
-                    src={portraitImage}
-                    alt={developerInfo.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                {/* Decorative ring */}
-                <div className="absolute inset-0 rounded-full border-2 border-brand-accent/50 scale-110 animate-pulse" />
+                {developerInfo.name.toUpperCase()}
+              </motion.h1>
+              
+              <motion.p
+                className="text-xl md:text-2xl font-light tracking-wide text-white/90"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <TypewriterText text={developerInfo.tagline} delay={0.8} />
+              </motion.p>
+
+              <motion.p
+                className="text-base md:text-lg font-light leading-relaxed text-white/80 max-w-2xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.6 }}
+              >
+                {developerInfo.heroIntroduction}
+              </motion.p>
+
+              {/* Skills Pills */}
+              <motion.div
+                className="flex flex-wrap justify-center gap-2 pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+              >
+                {developerInfo.skills.slice(0, 6).map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-4 py-2 text-sm font-light tracking-wide text-white/90 border border-white/20 rounded-full backdrop-blur-sm"
+                  >
+                    {skill}
+                  </span>
+                ))}
               </motion.div>
 
-              {/* Text Content */}
-              <div className="text-center lg:text-left space-y-6 max-w-2xl">
-                <motion.h1
-                  className="text-4xl md:text-6xl lg:text-7xl font-extralight tracking-widest text-white"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                >
-                  {developerInfo.name.toUpperCase()}
-                </motion.h1>
-                
-                <motion.p
-                  className="text-xl md:text-2xl font-light tracking-wide text-white/90"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                >
-                  <TypewriterText text={developerInfo.tagline} delay={0.8} />
-                </motion.p>
-
-                <motion.p
-                  className="text-base md:text-lg font-light leading-relaxed text-white/80"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                >
-                  {developerInfo.heroIntroduction}
-                </motion.p>
-
-                {/* Skills Pills */}
-                <motion.div
-                  className="flex flex-wrap justify-center lg:justify-start gap-2 pt-2"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                >
-                  {developerInfo.skills.slice(0, 6).map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-4 py-2 text-sm font-light tracking-wide text-white/90 border border-white/20 rounded-full backdrop-blur-sm"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </motion.div>
-
-                {/* Download CV Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 1 }}
-                  className="pt-4 flex justify-center lg:justify-start"
-                >
-                  <DownloadResumeButton />
-                </motion.div>
-              </div>
+              {/* Download CV Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1 }}
+                className="pt-4"
+              >
+                <DownloadResumeButton />
+              </motion.div>
             </motion.div>
 
             {/* Scroll Indicator */}
@@ -142,24 +121,47 @@ export default function Home() {
 
         {/* Introduction Section */}
         <section className="py-24 md:py-32 px-6 lg:px-8 bg-background">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
+          <div className="max-w-6xl mx-auto">
             <ScrollReveal>
-              <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-light tracking-wide">
-                  About My Work
-                </h2>
-                <div className="space-y-4 text-lg font-light leading-relaxed text-muted-foreground">
-                  <p>
-                    {developerInfo.aboutWork.split('\n\n')[0]}
-                  </p>
-                </div>
-                <Link
-                  to="/about"
-                  className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group"
+              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                {/* Portrait Image */}
+                <motion.div
+                  className="relative flex-shrink-0"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <span>Learn More About Me</span>
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </Link>
+                  <div className="relative size-64 md:size-80 rounded-2xl overflow-hidden shadow-2xl">
+                    <img
+                      src={portraitImage}
+                      alt={developerInfo.name}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  </div>
+                  {/* Decorative accent */}
+                  <div className="absolute -bottom-4 -right-4 size-24 bg-brand-accent/20 rounded-2xl -z-10" />
+                  <div className="absolute -top-4 -left-4 size-16 border-2 border-brand-accent/30 rounded-2xl -z-10" />
+                </motion.div>
+
+                {/* Text Content */}
+                <div className="flex-1 text-center lg:text-left space-y-6">
+                  <h2 className="text-3xl md:text-4xl font-light tracking-wide">
+                    About My Work
+                  </h2>
+                  <div className="space-y-4 text-lg font-light leading-relaxed text-muted-foreground">
+                    <p>
+                      {developerInfo.aboutWork.split('\n\n')[0]}
+                    </p>
+                  </div>
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-2 text-base font-light tracking-wide text-foreground hover:text-muted-foreground transition-colors group"
+                  >
+                    <span>Learn More About Me</span>
+                    <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </ScrollReveal>
           </div>
