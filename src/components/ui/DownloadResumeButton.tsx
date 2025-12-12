@@ -7,7 +7,7 @@ interface DownloadResumeButtonProps {
 
 /**
  * High-contrast pill-shaped resume download button
- * Features micro-interactions, confident wording, and brand accent color
+ * Features micro-interactions, confident wording, and monochrome styling
  */
 export function DownloadResumeButton({ variant = 'hero' }: DownloadResumeButtonProps) {
   const isHero = variant === 'hero';
@@ -20,21 +20,23 @@ export function DownloadResumeButton({ variant = 'hero' }: DownloadResumeButtonP
         group relative inline-flex items-center gap-3 px-6 py-3 rounded-full font-medium tracking-wide
         transition-all duration-300 ease-out overflow-hidden
         ${isHero 
-          ? 'bg-brand-accent text-brand-accent-foreground shadow-lg shadow-brand-accent/25' 
-          : 'bg-brand-accent text-brand-accent-foreground'
+          ? 'bg-white text-black shadow-lg shadow-white/20' 
+          : 'bg-primary text-primary-foreground'
         }
       `}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.98 }}
     >
-      {/* Hover glow effect */}
+      {/* Hover effect */}
       <motion.div
-        className="absolute inset-0 bg-brand-accent-hover opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+          isHero ? 'bg-gray-100' : 'bg-primary/80'
+        }`}
       />
       
       {/* Shimmer effect on hover */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-black/10 to-transparent -skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"
       />
 
       {/* Content */}
