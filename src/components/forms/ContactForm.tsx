@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { Loader2, CheckCircle2 } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import {
   Form,
   FormControl,
@@ -70,16 +69,22 @@ export function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: {
+      // Formspree integration - replace YOUR_FORM_ID with your actual form ID
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: data.name,
           email: data.email,
           projectType: data.projectType,
           message: data.message,
-        },
+          _subject: `New ${data.projectType} inquiry from ${data.name}`,
+        }),
       });
 
-      if (error) {
+      if (!response.ok) {
         throw new Error('Failed to send message');
       }
 
