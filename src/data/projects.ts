@@ -180,6 +180,126 @@ export const projects: Project[] = [
         alt: 'Sales analytics dashboard'
       }
     ]
+  },
+  {
+    id: '7',
+    title: 'E-Commerce Dashboard',
+    category: 'fullstack',
+    year: '2024',
+    slug: 'ecommerce-dashboard',
+    coverImage: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2V8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    description: 'A comprehensive admin dashboard for e-commerce businesses featuring real-time analytics, inventory management, order tracking, and customer insights with a modern, responsive interface.',
+    highlights: [
+      'Real-time sales analytics',
+      'Multi-vendor support',
+      'Automated inventory alerts',
+      'Customer segmentation tools'
+    ],
+    techStack: ['React', 'TypeScript', 'Node.js', 'MongoDB', 'Recharts'],
+    liveUrl: 'https://ecom-dash.app',
+    githubUrl: 'https://github.com/K1nkyio/ecommerce-dashboard',
+    images: [
+      {
+        id: '7-1',
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwyfHxkYXNoYm9hcmR8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Analytics dashboard'
+      },
+      {
+        id: '7-2',
+        src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmR8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Order management view'
+      }
+    ]
+  },
+  {
+    id: '8',
+    title: 'Weather Forecast API',
+    category: 'fullstack',
+    year: '2023',
+    slug: 'weather-forecast-api',
+    coverImage: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwxfHx3ZWF0aGVyfGVufDB8fHx8MTcwOTE1NDExMnww&ixlib=rb-4.1.0&q=80&w=1080',
+    description: 'A RESTful API service that aggregates weather data from multiple sources, providing accurate forecasts, historical data, and severe weather alerts for developers to integrate into their applications.',
+    highlights: [
+      'Multi-source data aggregation',
+      'Rate limiting and caching',
+      'Webhook notifications',
+      'Comprehensive API documentation'
+    ],
+    techStack: ['Python', 'FastAPI', 'Redis', 'PostgreSQL', 'Docker'],
+    liveUrl: 'https://weather-api.app/docs',
+    githubUrl: 'https://github.com/K1nkyio/weather-forecast-api',
+    images: [
+      {
+        id: '8-1',
+        src: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwyfHx3ZWF0aGVyfGVufDB8fHx8MTcwOTE1NDExMnww&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'API documentation'
+      },
+      {
+        id: '8-2',
+        src: 'https://images.unsplash.com/photo-1561484930-998b6a7b22e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwzfHxjbG91ZHN8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Weather data visualization'
+      }
+    ]
+  },
+  {
+    id: '9',
+    title: 'Task Flow',
+    category: 'mobile',
+    year: '2024',
+    slug: 'task-flow',
+    coverImage: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwxfHx0YXNrJTIwbWFuYWdlbWVudHxlbnwwfHx8fDE3MDkxNTQxMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+    description: 'A productivity-focused mobile app with Kanban boards, time tracking, team collaboration features, and AI-powered task prioritization to help teams stay organized and meet deadlines.',
+    highlights: [
+      'Drag-and-drop Kanban boards',
+      'AI task prioritization',
+      'Team collaboration',
+      'Time tracking & reports'
+    ],
+    techStack: ['React Native', 'TypeScript', 'Firebase', 'OpenAI API'],
+    liveUrl: 'https://taskflow.app',
+    githubUrl: 'https://github.com/K1nkyio/task-flow',
+    images: [
+      {
+        id: '9-1',
+        src: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwyfHxrYW5iYW58ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Kanban board view'
+      },
+      {
+        id: '9-2',
+        src: 'https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwzfHxwbGFubmluZ3xlbnwwfHx8fDE3MDkxNTQxMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Task details screen'
+      }
+    ]
+  },
+  {
+    id: '10',
+    title: 'Sentiment Analyzer',
+    category: 'ai',
+    year: '2023',
+    slug: 'sentiment-analyzer',
+    coverImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwxfHxzZW50aW1lbnR8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+    description: 'An NLP-powered tool that analyzes customer feedback, social media posts, and reviews to extract sentiment, emotions, and key topics, helping businesses understand customer opinions at scale.',
+    highlights: [
+      'Multi-language support',
+      'Emotion detection',
+      'Topic extraction',
+      'Trend analysis dashboard'
+    ],
+    techStack: ['Python', 'Hugging Face', 'Flask', 'PostgreSQL', 'D3.js'],
+    liveUrl: 'https://sentiment-ai.app',
+    githubUrl: 'https://github.com/K1nkyio/sentiment-analyzer',
+    images: [
+      {
+        id: '10-1',
+        src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwyfHxhbmFseXRpY3N8ZW58MHx8fHwxNzA5MTU0MTEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Sentiment dashboard'
+      },
+      {
+        id: '10-2',
+        src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwzfHxkYXRhfGVufDB8fHx8MTcwOTE1NDExMnww&ixlib=rb-4.1.0&q=80&w=1080',
+        alt: 'Topic analysis view'
+      }
+    ]
   }
 ];
 
