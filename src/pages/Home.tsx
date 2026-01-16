@@ -9,6 +9,7 @@ import { GallerySection } from '@/components/gallery/GallerySection';
 import { TestimonialsSection } from '@/components/testimonials/TestimonialsSection';
 import { DownloadResumeButton } from '@/components/ui/DownloadResumeButton';
 import { TypewriterText } from '@/components/ui/TypewriterText';
+import { SkillsSection } from '@/components/skills/SkillsSection';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import portraitImage from '@/assets/portrait.jpg';
@@ -167,6 +168,9 @@ export default function Home() {
             </ScrollReveal>
           </div>
         </section>
+
+        {/* Skills Section */}
+        <SkillsSection />
 
         {/* Featured Projects Section */}
         <section className="py-24 md:py-32 border-t border-border">
