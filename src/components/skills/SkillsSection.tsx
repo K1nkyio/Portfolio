@@ -1,116 +1,334 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { 
-  Code2, 
-  Database, 
-  Smartphone, 
-  Brain, 
-  Server, 
-  Globe,
-  Layers,
-  Cpu
-} from 'lucide-react';
-import { developerInfo } from '@/data/developer';
+import { useRef, useState } from 'react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 interface SkillData {
   name: string;
   level: number;
-  icon: React.ElementType;
   category: 'frontend' | 'backend' | 'mobile' | 'ai';
 }
 
 const skillsData: SkillData[] = [
-  { name: 'React', level: 95, icon: Code2, category: 'frontend' },
-  { name: 'TypeScript', level: 90, icon: Code2, category: 'frontend' },
-  { name: 'Next.js', level: 88, icon: Globe, category: 'frontend' },
-  { name: 'Node.js', level: 85, icon: Server, category: 'backend' },
-  { name: 'Python', level: 85, icon: Cpu, category: 'backend' },
-  { name: 'Kotlin', level: 80, icon: Smartphone, category: 'mobile' },
-  { name: 'PostgreSQL', level: 82, icon: Database, category: 'backend' },
-  { name: 'MongoDB', level: 78, icon: Database, category: 'backend' },
-  { name: 'Machine Learning', level: 75, icon: Brain, category: 'ai' },
-  { name: 'NLP', level: 72, icon: Brain, category: 'ai' },
-  { name: 'Firebase', level: 85, icon: Layers, category: 'backend' },
-  { name: 'REST APIs', level: 92, icon: Server, category: 'backend' },
+  { name: 'React', level: 95, category: 'frontend' },
+  { name: 'TypeScript', level: 90, category: 'frontend' },
+  { name: 'Node.js', level: 85, category: 'backend' },
+  { name: 'Python', level: 85, category: 'backend' },
+  { name: 'Next.js', level: 88, category: 'frontend' },
+  { name: 'Machine Learning', level: 75, category: 'ai' },
+  { name: 'PostgreSQL', level: 82, category: 'backend' },
+  { name: 'Kotlin', level: 80, category: 'mobile' },
 ];
 
 const categoryColors = {
-  frontend: 'from-blue-500 to-cyan-400',
-  backend: 'from-purple-500 to-pink-400',
-  mobile: 'from-orange-500 to-yellow-400',
-  ai: 'from-green-500 to-emerald-400',
+  frontend: { stroke: '#3b82f6', fill: 'rgba(59, 130, 246, 0.3)' },
+  backend: { stroke: '#a855f7', fill: 'rgba(168, 85, 247, 0.3)' },
+  mobile: { stroke: '#f97316', fill: 'rgba(249, 115, 22, 0.3)' },
+  ai: { stroke: '#22c55e', fill: 'rgba(34, 197, 94, 0.3)' },
 };
 
-const categoryLabels = {
-  frontend: 'Frontend',
-  backend: 'Backend',
-  mobile: 'Mobile',
-  ai: 'AI/ML',
-};
+function SpiderWebChart({ skills, size = 400 }: { skills: SkillData[]; size?: number }) {
+  const ref = useRef<SVGSVGElement>(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  
+  const center = size / 2;
+  const maxRadius = size * 0.38;
+  const levels = 5;
+  const angleStep = (2 * Math.PI) / skills.length;
 
-function SkillBar({ skill, index }: { skill: SkillData; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const Icon = skill.icon;
+  // Generate points for each skill on the web
+  const getPointOnWeb = (index: number, value: number) => {
+    const angle = angleStep * index - Math.PI / 2;
+    const radius = (value / 100) * maxRadius;
+    return {
+      x: center + radius * Math.cos(angle),
+      y: center + radius * Math.sin(angle),
+    };
+  };
+
+  // Generate the skill polygon path
+  const skillPath = skills
+    .map((skill, i) => {
+      const point = getPointOnWeb(i, skill.level);
+      return `${i === 0 ? 'M' : 'L'} ${point.x} ${point.y}`;
+    })
+    .join(' ') + ' Z';
+
+  // Generate web rings
+  const webRings = Array.from({ length: levels }, (_, i) => {
+    const ringRadius = ((i + 1) / levels) * maxRadius;
+    return skills
+      .map((_, j) => {
+        const angle = angleStep * j - Math.PI / 2;
+        return {
+          x: center + ringRadius * Math.cos(angle),
+          y: center + ringRadius * Math.sin(angle),
+        };
+      });
+  });
 
   return (
-    <motion.div
+    <svg
       ref={ref}
-      className="group relative"
-      initial={{ opacity: 0, x: -20 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewBox={`0 0 ${size} ${size}`}
+      className="w-full max-w-lg mx-auto"
+      style={{ filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.1))' }}
     >
-      <div className="flex items-center gap-4 mb-2">
-        <motion.div
-          className="p-2 rounded-lg bg-secondary/50 group-hover:bg-secondary transition-colors"
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          transition={{ type: 'spring', stiffness: 400 }}
-        >
-          <Icon className="size-5 text-foreground" />
-        </motion.div>
-        <span className="text-sm font-medium text-foreground flex-1">{skill.name}</span>
-        <span className="text-sm text-muted-foreground">{skill.level}%</span>
-      </div>
-      
-      <div className="h-2 bg-secondary rounded-full overflow-hidden">
-        <motion.div
-          className={`h-full rounded-full bg-gradient-to-r ${categoryColors[skill.category]}`}
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-          transition={{ duration: 1, delay: index * 0.1 + 0.3, ease: 'easeOut' }}
+      {/* Animated background glow */}
+      <defs>
+        <radialGradient id="webGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
+        </radialGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* Background circle glow */}
+      <motion.circle
+        cx={center}
+        cy={center}
+        r={maxRadius + 20}
+        fill="url(#webGlow)"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+        transition={{ duration: 1 }}
+      />
+
+      {/* Web rings (concentric polygons) */}
+      {webRings.map((ring, ringIndex) => (
+        <motion.polygon
+          key={`ring-${ringIndex}`}
+          points={ring.map(p => `${p.x},${p.y}`).join(' ')}
+          fill="none"
+          className="stroke-border"
+          strokeWidth="1"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={isInView ? { opacity: 0.5, scale: 1 } : { opacity: 0, scale: 0 }}
+          transition={{ duration: 0.6, delay: ringIndex * 0.1 }}
+          style={{ transformOrigin: 'center' }}
         />
-      </div>
+      ))}
+
+      {/* Web spokes (lines from center to each skill) */}
+      {skills.map((_, i) => {
+        const angle = angleStep * i - Math.PI / 2;
+        const endX = center + maxRadius * Math.cos(angle);
+        const endY = center + maxRadius * Math.sin(angle);
+        
+        return (
+          <motion.line
+            key={`spoke-${i}`}
+            x1={center}
+            y1={center}
+            x2={endX}
+            y2={endY}
+            className="stroke-border"
+            strokeWidth="1"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={isInView ? { pathLength: 1, opacity: 0.5 } : { pathLength: 0, opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 + i * 0.05 }}
+          />
+        );
+      })}
+
+      {/* Skill area polygon with gradient fill */}
+      <motion.path
+        d={skillPath}
+        fill="url(#skillGradient)"
+        className="stroke-primary"
+        strokeWidth="2"
+        filter="url(#glow)"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={isInView ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
+        transition={{ duration: 1.5, delay: 0.8, ease: 'easeOut' }}
+      />
+
+      {/* Gradient for skill area */}
+      <defs>
+        <linearGradient id="skillGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.4" />
+          <stop offset="50%" stopColor="var(--primary)" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.3" />
+        </linearGradient>
+      </defs>
+
+      {/* Skill points and labels */}
+      {skills.map((skill, i) => {
+        const point = getPointOnWeb(i, skill.level);
+        const labelPoint = getPointOnWeb(i, 115);
+        const isHovered = hoveredSkill === skill.name;
+        
+        return (
+          <g key={skill.name}>
+            {/* Connection line when hovered */}
+            {isHovered && (
+              <motion.line
+                x1={center}
+                y1={center}
+                x2={point.x}
+                y2={point.y}
+                stroke={categoryColors[skill.category].stroke}
+                strokeWidth="2"
+                strokeDasharray="4 4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              />
+            )}
+            
+            {/* Skill point */}
+            <motion.circle
+              cx={point.x}
+              cy={point.y}
+              r={isHovered ? 8 : 6}
+              fill={categoryColors[skill.category].stroke}
+              className="cursor-pointer"
+              filter="url(#glow)"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+              transition={{ duration: 0.4, delay: 1 + i * 0.1, type: 'spring' }}
+              onMouseEnter={() => setHoveredSkill(skill.name)}
+              onMouseLeave={() => setHoveredSkill(null)}
+              whileHover={{ scale: 1.3 }}
+            />
+
+            {/* Outer ring on hover */}
+            {isHovered && (
+              <motion.circle
+                cx={point.x}
+                cy={point.y}
+                r={14}
+                fill="none"
+                stroke={categoryColors[skill.category].stroke}
+                strokeWidth="2"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 0.5 }}
+                transition={{ duration: 0.2 }}
+              />
+            )}
+
+            {/* Skill label */}
+            <motion.text
+              x={labelPoint.x}
+              y={labelPoint.y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              className={`text-xs font-medium fill-current transition-colors ${
+                isHovered ? 'text-foreground' : 'text-muted-foreground'
+              }`}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.4, delay: 1.2 + i * 0.05 }}
+              onMouseEnter={() => setHoveredSkill(skill.name)}
+              onMouseLeave={() => setHoveredSkill(null)}
+              style={{ cursor: 'pointer' }}
+            >
+              {skill.name}
+            </motion.text>
+
+            {/* Skill level badge on hover */}
+            {isHovered && (
+              <motion.g
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <rect
+                  x={point.x - 20}
+                  y={point.y - 35}
+                  width="40"
+                  height="22"
+                  rx="4"
+                  fill={categoryColors[skill.category].stroke}
+                />
+                <text
+                  x={point.x}
+                  y={point.y - 24}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  className="text-xs font-bold fill-white"
+                >
+                  {skill.level}%
+                </text>
+              </motion.g>
+            )}
+          </g>
+        );
+      })}
+
+      {/* Center decoration */}
+      <motion.circle
+        cx={center}
+        cy={center}
+        r={8}
+        className="fill-primary"
+        initial={{ scale: 0 }}
+        animate={isInView ? { scale: 1 } : { scale: 0 }}
+        transition={{ duration: 0.5, delay: 0.5, type: 'spring' }}
+      />
+      <motion.circle
+        cx={center}
+        cy={center}
+        r={4}
+        className="fill-background"
+        initial={{ scale: 0 }}
+        animate={isInView ? { scale: 1 } : { scale: 0 }}
+        transition={{ duration: 0.5, delay: 0.6, type: 'spring' }}
+      />
+    </svg>
+  );
+}
+
+function CategoryLegend() {
+  const categories = [
+    { key: 'frontend', label: 'Frontend', color: categoryColors.frontend.stroke },
+    { key: 'backend', label: 'Backend', color: categoryColors.backend.stroke },
+    { key: 'mobile', label: 'Mobile', color: categoryColors.mobile.stroke },
+    { key: 'ai', label: 'AI/ML', color: categoryColors.ai.stroke },
+  ];
+
+  return (
+    <motion.div 
+      className="flex flex-wrap justify-center gap-6 mt-8"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.5 }}
+    >
+      {categories.map((cat) => (
+        <div key={cat.key} className="flex items-center gap-2">
+          <div 
+            className="size-3 rounded-full"
+            style={{ backgroundColor: cat.color }}
+          />
+          <span className="text-sm text-muted-foreground">{cat.label}</span>
+        </div>
+      ))}
     </motion.div>
   );
 }
 
-function FloatingSkillIcon({ skill, index }: { skill: string; index: number }) {
-  const getRandomPosition = () => ({
-    x: Math.random() * 20 - 10,
-    y: Math.random() * 20 - 10,
-  });
-
+function FloatingSkillPill({ skill, index }: { skill: string; index: number }) {
   return (
     <motion.div
-      className="px-4 py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 text-sm font-medium text-foreground shadow-lg"
-      initial={{ opacity: 0, scale: 0 }}
-      animate={{ 
-        opacity: 1, 
-        scale: 1,
-        ...getRandomPosition()
-      }}
+      className="px-4 py-2 rounded-full bg-secondary/80 backdrop-blur-sm border border-border/50 text-sm font-medium text-foreground shadow-lg hover:shadow-xl transition-shadow"
+      initial={{ opacity: 0, scale: 0, y: 20 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ 
-        duration: 0.5, 
+        duration: 0.4, 
         delay: index * 0.08,
         type: 'spring',
         stiffness: 200
       }}
       whileHover={{ 
         scale: 1.1, 
-        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-        y: -5
+        y: -5,
       }}
     >
       {skill}
@@ -118,71 +336,12 @@ function FloatingSkillIcon({ skill, index }: { skill: string; index: number }) {
   );
 }
 
-function AnimatedCircle({ category, count }: { category: keyof typeof categoryLabels; count: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-  const percentage = (count / skillsData.length) * 100;
-
-  return (
-    <motion.div
-      ref={ref}
-      className="flex flex-col items-center gap-3"
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="relative size-20 md:size-24">
-        <svg className="size-full -rotate-90" viewBox="0 0 100 100">
-          <circle
-            cx="50"
-            cy="50"
-            r="40"
-            fill="none"
-            strokeWidth="8"
-            className="stroke-secondary"
-          />
-          <motion.circle
-            cx="50"
-            cy="50"
-            r="40"
-            fill="none"
-            strokeWidth="8"
-            strokeLinecap="round"
-            className={`stroke-current`}
-            style={{ 
-              color: category === 'frontend' ? '#3b82f6' : 
-                     category === 'backend' ? '#a855f7' : 
-                     category === 'mobile' ? '#f97316' : '#22c55e' 
-            }}
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: percentage / 100 } : { pathLength: 0 }}
-            transition={{ duration: 1.5, ease: 'easeOut' }}
-            strokeDasharray="251.2"
-            strokeDashoffset="0"
-          />
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg md:text-xl font-bold text-foreground">{count}</span>
-        </div>
-      </div>
-      <span className="text-sm font-medium text-muted-foreground">{categoryLabels[category]}</span>
-    </motion.div>
-  );
-}
-
 export function SkillsSection() {
-  const categoryCounts = {
-    frontend: skillsData.filter(s => s.category === 'frontend').length,
-    backend: skillsData.filter(s => s.category === 'backend').length,
-    mobile: skillsData.filter(s => s.category === 'mobile').length,
-    ai: skillsData.filter(s => s.category === 'ai').length,
-  };
-
   return (
     <section className="py-24 md:py-32 px-6 lg:px-8 bg-background border-t border-border overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal>
-          <div className="text-center mb-16 space-y-4">
+          <div className="text-center mb-12 space-y-4">
             <motion.h2 
               className="text-4xl md:text-5xl font-light tracking-wide"
               initial={{ opacity: 0, y: 20 }}
@@ -204,30 +363,25 @@ export function SkillsSection() {
           </div>
         </ScrollReveal>
 
-        {/* Category Overview Circles */}
-        <motion.div 
-          className="flex justify-center gap-8 md:gap-16 mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <AnimatedCircle category="frontend" count={categoryCounts.frontend} />
-          <AnimatedCircle category="backend" count={categoryCounts.backend} />
-          <AnimatedCircle category="mobile" count={categoryCounts.mobile} />
-          <AnimatedCircle category="ai" count={categoryCounts.ai} />
-        </motion.div>
-
-        {/* Skills Progress Bars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16">
-          {skillsData.map((skill, index) => (
-            <SkillBar key={skill.name} skill={skill} index={index} />
-          ))}
+        {/* Spider Web Chart */}
+        <div className="relative">
+          {/* Decorative background elements */}
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="size-[500px] rounded-full bg-gradient-radial from-primary/5 to-transparent blur-3xl" />
+          </motion.div>
+          
+          <SpiderWebChart skills={skillsData} size={450} />
+          <CategoryLegend />
         </div>
 
-        {/* Floating Skills Cloud */}
+        {/* Additional Skills Cloud */}
         <ScrollReveal>
-          <div className="pt-8 border-t border-border/50">
+          <div className="pt-16 mt-16 border-t border-border/50">
             <motion.p 
               className="text-center text-sm text-muted-foreground mb-8"
               initial={{ opacity: 0 }}
@@ -237,8 +391,8 @@ export function SkillsSection() {
               Also experienced with
             </motion.p>
             <div className="flex flex-wrap justify-center gap-3">
-              {['Git', 'Docker', 'AWS', 'GraphQL', 'Redux', 'Tailwind CSS', 'Figma', 'CI/CD'].map((skill, index) => (
-                <FloatingSkillIcon key={skill} skill={skill} index={index} />
+              {['Git', 'Docker', 'AWS', 'GraphQL', 'Redux', 'Tailwind CSS', 'Figma', 'CI/CD', 'Firebase', 'REST APIs', 'MongoDB'].map((skill, index) => (
+                <FloatingSkillPill key={skill} skill={skill} index={index} />
               ))}
             </div>
           </div>
