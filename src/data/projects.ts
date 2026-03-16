@@ -77,7 +77,7 @@ export const projects: Project[] = [
     ],
     techStack: ['Python', 'spaCy', 'scikit-learn', 'FastAPI', 'Docker'],
     liveUrl: 'https://resume-analyzer.app',
-    githubUrl: 'https://github.com/nicholasmureithi/smart-resume-analyzer',
+    githubUrl: 'https://github.com/K1nkyio/Smart-Resume-Analyzer-Job-Fit-Matcher',
     images: [
       {
         id: '3-1',
@@ -127,25 +127,29 @@ export const projects: Project[] = [
     category: 'platform',
     year: '2023',
     slug: 'zetechverse',
-    coverImage: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwxfHx1bml2ZXJzaXR5fGVufDB8fHx8MTcwOTE1NDExMnww&ixlib=rb-4.1.0&q=80&w=1080',
-    description: 'A dedicated web platform created for Zetech University students, built to centralize essential academic and campus services. It focuses on accessibility, simplicity, and improving the student experience.',
+    coverImage: '/images/zetechverse-hero.png',
+    description: 'I engineered a production-grade university platform with multi-level RBAC, admin approval workflows, and full audit logging.\n\nZetechVerse is a complete digital ecosystem built for Zetech University students.\n\nOver the past months, I designed and developed:',
     highlights: [
-      'Student accounts and role-based dashboards',
-      'Course materials, announcements, and updates',
-      'Community-driven student tools',
-      'Clean, mobile-first interface'
+      '🔐 Architecture & Control: Dual-dashboard system (Student & Admin), multi-level RBAC (user → admin → super_admin), admin request & approval workflow, audit logging with IP & user-agent tracking',
+      '🎓 Student Ecosystem: Opportunities board, campus marketplace, events with RSVP, anonymous confessions, blog & moderation pipeline',
+      '🛡️ Security Engineering: JWT authentication with bcrypt, rate limiting & input validation, SQL injection prevention'
     ],
-    techStack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind CSS'],
-    liveUrl: 'https://zetechverse.app',
-    githubUrl: 'https://github.com/nicholasmureithi/zetechverse',
+    techStack: ['Node.js', 'Express', 'PostgreSQL', 'React (TypeScript)', 'Vite', 'Tailwind', 'TanStack Query'],
+    liveUrl: 'https://zetechverse-user.vercel.app/',
+    githubUrl: 'https://github.com/K1nkyio/ZetechVerse',
     images: [
       {
         id: '5-1',
+        src: '/images/zetechverse-hero.png',
+        alt: 'ZetechVerse platform preview'
+      },
+      {
+        id: '5-2',
         src: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwyfHx1bml2ZXJzaXR5fGVufDB8fHx8MTcwOTE1NDExMnww&ixlib=rb-4.1.0&q=80&w=1080',
         alt: 'Student portal dashboard'
       },
       {
-        id: '5-2',
+        id: '5-3',
         src: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDA2OTF8MHwxfHNlYXJjaHwzfHxzdHVkeXxlbnwwfHx8fDE3MDkxNTQxMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
         alt: 'Course materials page'
       }
@@ -167,7 +171,7 @@ export const projects: Project[] = [
     ],
     techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'Chart.js'],
     liveUrl: 'https://hardware-manager.app',
-    githubUrl: 'https://github.com/nicholasmureithi/hardware-store-manager',
+    githubUrl: 'https://github.com/K1nkyio/Hardware_Store',
     images: [
       {
         id: '6-1',
