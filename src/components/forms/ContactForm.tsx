@@ -69,8 +69,7 @@ export function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Formspree integration - replace YOUR_FORM_ID with your actual form ID
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -80,12 +79,15 @@ export function ContactForm() {
           email: data.email,
           projectType: data.projectType,
           message: data.message,
-          _subject: `New ${data.projectType} inquiry from ${data.name}`,
         }),
       });
 
+      const responseData = await response
+        .json()
+        .catch(() => ({ error: 'Failed to send message' }));
+
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error(responseData.error || 'Failed to send message');
       }
 
       // Show success state
@@ -98,7 +100,10 @@ export function ContactForm() {
       }, 5000);
     } catch (error) {
       form.setError('root', {
-        message: 'Failed to send message. Please try again.',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Failed to send message. Please try again.',
       });
     } finally {
       setIsSubmitting(false);

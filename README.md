@@ -64,6 +64,18 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/6fd12b81-631e-49d3-83b3-86e8b3fab3ae) and click on Share -> Publish.
 
+## Contact form email setup (Gmail inbox)
+
+The contact form now submits to a serverless endpoint at `api/contact.js`.
+To deliver messages to your inbox (`nicholasmaina826@gmail.com`), configure these environment variables:
+
+- `SMTP_USER`: your Gmail address used to send mail (example: `nicholasmaina826@gmail.com`)
+- `SMTP_PASS`: a Gmail App Password (not your normal account password)
+- `CONTACT_TO`: destination inbox email (optional, defaults to `nicholasmaina826@gmail.com`)
+
+For local development, create a `.env.local` file in the project root with those variables.
+For production, add the same variables in your hosting provider's project settings (for example, Vercel Environment Variables).
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
