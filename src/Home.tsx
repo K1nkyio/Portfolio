@@ -84,11 +84,10 @@ export default function Home() {
         <p className="mt-8 max-w-[70ch] text-[17px]"><span className="font-bold">Coursework:</span> {coursework.join(", ")}.</p>
       </section>
 
-      <section id="skills" className="mt-24 scroll-mt-20 border-y-4 border-ink bg-ink py-16 text-paper sm:py-20">
+      <section id="skills" className="mt-24 scroll-mt-20 bg-ink py-12 text-paper">
         <div className={wrap}>
-          <p className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-ground">Tools in practice</p>
-          <h2 className="font-display text-4xl text-white sm:text-5xl md:text-6xl">Skills, with proof</h2>
-          <p className="mb-8 mt-3 max-w-[60ch] text-lg text-white/90 sm:mb-10">Browse by category. Select a technology to see which showcased projects use it.</p>
+          <h2 className="font-display text-4xl text-paper md:text-5xl">What I work with</h2>
+          <p className="mb-8 mt-2 max-w-[60ch] text-lg text-paper/85">Touch a tile to light up what I've used it alongside, and the projects that prove it.</p>
           <Constellation />
         </div>
       </section>
