@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS inquiries (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  email VARCHAR(254) NOT NULL,
+  topic VARCHAR(80) NOT NULL,
+  message TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX IF NOT EXISTS inquiries_created_at_idx ON inquiries (created_at DESC);

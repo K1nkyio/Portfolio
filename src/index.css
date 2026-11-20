@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@theme {
+  --color-ground: #ffc20e; --color-ink: #0e1a5b; --color-pink: #e5107a; --color-green: #0a8f5b; --color-paper: #fff6d8;
+  --font-display: "Dela Gothic One", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--color-ground); color: var(--color-ink); font-family: var(--font-sans); font-size: 18px; line-height: 1.6; }
+/* kanga border: a zigzag of ink triangles */
+.pindo { background-color: var(--color-ground);
+  background-image: linear-gradient(135deg, var(--color-ink) 25%, transparent 25%), linear-gradient(225deg, var(--color-ink) 25%, transparent 25%), linear-gradient(315deg, var(--color-ink) 25%, transparent 25%), linear-gradient(45deg, var(--color-ink) 25%, transparent 25%);
+  background-size: 12px 12px; background-position: -6px 0, -6px 0, 0 0, 0 0; }
+:focus-visible { outline: 3px solid var(--color-pink); outline-offset: 3px; }
+::selection { background: var(--color-pink); color: #fff; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+/* tailor's tape: tick marks along the bottom edge */
+.tape { background-color: var(--color-paper); background-repeat: repeat-x; background-position: left bottom, left bottom;
+  background-image: linear-gradient(90deg, var(--color-ink) 1.5px, transparent 1.5px), linear-gradient(90deg, var(--color-ink) 2px, transparent 2px);
+  background-size: 8px 6px, 40px 13px; }
+@media (max-width: 380px) { body { font-size: 16px; } }
