@@ -43,7 +43,7 @@ export default function Home() {
           </div>
         </div>
         <div className="relative mx-auto w-full max-w-[420px] py-6">
-          <svg viewBox="0 0 200 200" aria-hidden className="absolute left-1/2 top-1/2 w-[150%] -translate-x-1/2 -translate-y-1/2">
+          <svg viewBox="0 0 200 200" aria-hidden className="absolute left-1/2 top-1/2 w-[min(150%,100vw)] -translate-x-1/2 -translate-y-1/2">
             {rings.map(([c, r], i) => (
               <motion.circle key={r} cx="100" cy="100" r={r} fill={c} initial={{ scale: 0 }} animate={{ scale: 1 }} style={{ transformBox: "fill-box", transformOrigin: "center" }}
                 transition={{ delay: 0.2 + i * 0.12, type: "spring", stiffness: 90, damping: 12 }} />
